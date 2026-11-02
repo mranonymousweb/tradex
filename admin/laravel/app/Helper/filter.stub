@@ -1,0 +1,13 @@
+<?php
+
+namespace {{ namespace }};
+
+use App\Filters\Contracts\QueryFilter;
+
+class {{ class }} extends QueryFilter
+{
+        public function id($value = null)
+        {
+            return $this->builder->when($value, fn($q) => $q->where('id', $value));
+        }
+}

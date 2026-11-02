@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => 'Название',
+    'initial_balance' => ' Начальный баланс (USDT) ',
+    'challenge_duration' => ' Продолжительность вызова (дни) ',
+    'min_day' => ' Минимальные активные торговые дни ',
+    'profit_target' => ' Целевая прибыль (%) ',
+    'daily_drawdown' => ' Ежедневная просадка (%) ',
+    'max_drawdown' => ' Макс. просадка(%) ',
+    'risk_reset_time' => ' Время сброса риска (дата время) ',
+    'max_open_trades' => ' Макс. открытые сделки ',
+    'max_position_size' => ' Макс. размер позиции (%) ',
+    'allowed_symbols' => ' Разрешенные символы ',
+    'leverage_from' => ' Кредитное плечо от ',
+    'leverage_to' => ' Кредитное плечо до ',
+    'leverage' => ' Кредитное плечо ',
+    'hold_overnight_positions' => ' Удержание ночных позиций ',
+    'weekend_trading_allowed' => ' Торговля на выходных разрешена ',
+    'force_sl_tp_usage' => ' Принудительное использование Sl/Tp ',
+    'auto_disable_on_rule_breach' => ' Автоматическое отключение при нарушении правил ',
+    'allow_copy_trading' => ' Разрешить копирование сделок ',
+    'allow_bots_ea' => ' Разрешить ботов Ea ',
+    'news_time_trading_block' => ' News Time Trading Block',
+];

@@ -1,0 +1,1 @@
+export const wsPort = process.env.WS_PORT ? +process.env.WS_PORT : 3016;

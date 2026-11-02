@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => 'Titel',
+    'initial_balance' => ' Anfangssaldo (USDT) ',
+    'challenge_duration' => ' Challenge-Dauer (Tage) ',
+    'min_day' => ' Mindestaktive Handelstage ',
+    'profit_target' => ' Gewinnziel (%) ',
+    'daily_drawdown' => ' Täglicher Drawdown (%) ',
+    'max_drawdown' => ' Max. Drawdown (%) ',
+    'risk_reset_time' => ' Risiko-Reset-Zeit (Datum/Uhrzeit) ',
+    'max_open_trades' => ' Max. offene Trades ',
+    'max_position_size' => ' Max. Positionsgröße (%) ',
+    'allowed_symbols' => ' Zulässige Symbole ',
+    'leverage_from' => ' Hebelwirkung von ',
+    'leverage_to' => ' Hebelwirkung auf ',
+    'leverage' => ' Hebelwirkung ',
+    'hold_overnight_positions' => ' Übernachtpositionen halten ',
+    'weekend_trading_allowed' => ' Wochenendhandel erlaubt ',
+    'force_sl_tp_usage' => ' Sl/Tp erzwingen Verwendung ',
+    'auto_disable_on_rule_breach' => ' Automatische Deaktivierung bei Regelverstoß ',
+    'allow_copy_trading' => ' Kopierhandel zulassen ',
+    'allow_bots_ea' => ' Bots Ea zulassen ',
+    'news_time_trading_block' => ' News Time Trading Block',
+];

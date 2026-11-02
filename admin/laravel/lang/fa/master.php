@@ -1,0 +1,30 @@
+<?php
+
+return [
+    'admin' => 'مدیر',
+    'admins' => 'مدیران',
+    'logs' => 'لاگ‌ها',
+    'role' => 'نقش ',
+    'roles' => 'نقش ها',
+    'department' => 'دپارتمان',
+    'add_department' => 'افزودن دپارتمان',
+    'add_admin' => 'افزودن مدیر',
+    'add_user' => 'افزودن کاربر',
+    'save_list' => 'ثبت و لیست',
+    'panel' => 'پنل',
+    'back'=> ' بازگشت',
+    'user' => 'کاربر',
+    'users' => 'کاربران',
+    'changelings' => ' چالش‌ ها ',
+    'add_challenge' => ' ثبت چالش',
+    'edit_challenge' => ' ویرایش چالش',
+    'setting' => ' تنظیمات ',
+    'ticket' => ' تیکت ',
+    'crete_ticket' => 'ثبت تیکت ',
+    'packages'=>"پکیج ها",
+    'user_card' => "کارت بانکی",
+    'admin_activity_log' => "لاگ فعالیت ادمین",
+    'system_logs' => "لاگ های سیستمی",
+    'list' => 'لیست',
+
+];

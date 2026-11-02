@@ -1,0 +1,76 @@
+# Security pipeline — Arya Exchange (Laravel)
+# Runs on every merge request and on the default branch.
+# Jobs that can block a merge are in the `blocking` stage; advisory ones report only.
+
+stages:
+  - blocking
+  - advisory
+
+default:
+  image: php:8.3-cli
+  before_script:
+    - apt-get update -qq && apt-get install -yqq git unzip libzip-dev > /dev/null
+    - docker-php-ext-install zip > /dev/null
+    - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# ---------------------------------------------------------------------------
+# 1. Codebase guardrails — the vulnerability classes found in the 2026 audit.
+#    This is the job that stops those specific bugs from coming back.
+# ---------------------------------------------------------------------------
+guardrails:
+  stage: blocking
+  before_script: []
+  image: alpine:3.20
+  script:
+    - apk add --no-cache bash grep
+    - bash ./scripts/security-guardrails.sh
+
+# ---------------------------------------------------------------------------
+# 2. Known-vulnerable dependencies (CVE feed)
+# ---------------------------------------------------------------------------
+composer_audit:
+  stage: blocking
+  script:
+    - composer audit --locked --format=plain --no-interaction
+  # Tighten to `--abandoned=report` only once the current 21 advisories are cleared.
+  allow_failure: true
+
+# ---------------------------------------------------------------------------
+# 3. Secret scanning — an APP_KEY was committed once already (V-29)
+# ---------------------------------------------------------------------------
+secret_scan:
+  stage: blocking
+  image:
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+  before_script: []
+  script:
+    # scan the working tree AND the full history — a rotated key still leaks from history
+    - gitleaks detect --source . --redact --verbose --exit-code 1
+
+# ---------------------------------------------------------------------------
+# 4. Static analysis
+# ---------------------------------------------------------------------------
+phpstan:
+  stage: advisory
+  script:
+    - composer install --no-interaction --prefer-dist --no-progress
+    - composer require --dev larastan/larastan --no-interaction
+    - ./vendor/bin/phpstan analyse app --level=5 --no-progress
+  allow_failure: true
+
+semgrep:
+  stage: advisory
+  image: returntocorp/semgrep:latest
+  before_script: []
+  script:
+    - semgrep --config=p/php --config=p/security-audit --config=p/secrets
+        --severity=ERROR --error --metrics=off .
+  allow_failure: true
+
+pint:
+  stage: advisory
+  script:
+    - composer install --no-interaction --prefer-dist --no-progress
+    - ./vendor/bin/pint --test
+  allow_failure: true

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>سفارشات بات اسپات - Real-time</title>
+  <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      background: #0f172a;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 { text-align: center; color: #60a5fa; margin-bottom: 12px; }
+    .header {
+      text-align: center;
+      background: #1e293b;
+      padding: 16px;
+      border-radius: 10px;
+      margin: 16px 0;
+    }
+    input, button {
+      padding: 10px 14px;
+      font-size: 15px;
+      margin: 6px 4px;
+      border-radius: 6px;
+      border: none;
+    }
+    input { background: #334155; color: white; width: 220px; text-align: center; }
+    button { background: #3b82f6; color: white; cursor: pointer; }
+    button:hover { background: #2563eb; }
+    .status { margin: 12px 0; font-size: 14px; color: #94a3b8; }
+    .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 24px;
+      max-width: 1600px;
+      margin: 0 auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #1e2937;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.35);
+    }
+    th, td {
+      padding: 12px 10px;
+      text-align: center;
+      border-bottom: 1px solid #334155;
+    }
+    th { background: #1e40af; font-weight: 600; }
+    .buy  { color: #22c55e; font-weight: bold; }
+    .sell { color: #ef4444; font-weight: bold; }
+    .done-buy  { color: #86efac; }
+    .done-sell { color: #f87171; }
+    .time  { font-size: 0.9em; color: #94a3b8; }
+    .last-update { text-align: center; margin: 20px 0; color: #64748b; }
+  </style>
+</head>
+<body>
+
+  <h1>📊 سفارشات بات اسپات</h1>
+
+  <div class="header">
+    <input id="market" value="BTC_USDT" placeholder="جفت ارز (مثال: BTC_USDT)" />
+    <button onclick="connectOrChange()">تغییر بازار</button>
+    <button onclick="requestData()">🔄 بروزرسانی دستی</button>
+
+    <div class="status" id="status">در حال اتصال به سرور …</div>
+  </div>
+
+  <div class="container">
+    <div>
+      <h2 class="buy">🟢 خرید</h2>
+      <table id="buyTable">
+        <thead><tr><th>قیمت</th><th>مقدار</th><th>پرشده</th><th>باقی</th><th>مجموع</th><th>زمان</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div>
+      <h2 class="sell">🔴 فروش</h2>
+      <table id="sellTable">
+        <thead><tr><th>قیمت</th><th>مقدار</th><th>پرشده</th><th>باقی</th><th>مجموع</th><th>زمان</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div>
+      <h2>✅ انجام‌شده</h2>
+      <table id="doneTable">
+        <thead><tr><th>جهت</th><th>قیمت</th><th>مقدار</th><th>مجموع</th><th>زمان</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="last-update" id="lastUpdate">آخرین بروزرسانی: —</div>
+
+  <script>
+    let socket = null;
+    let currentMarket = "BTC_USDT";
+    let lastUpdateTime;   // می‌توانیم این را نگه داریم
+
+    function initializeConnection() {
+      if (socket) {
+        socket.disconnect();
+      }
+
+      socket = io("/bot", {
+        reconnection: true,
+        reconnectionAttempts: 8,
+        reconnectionDelay: 1200,
+        timeout: 10000
+      });
+
+      socket.on("connect", () => {
+        document.getElementById("status").innerHTML =
+          `متصل شد (ID: ${socket.id}) — بازار: ${currentMarket}`;
+        
+        socket.on(`bot.${currentMarket}`, renderAll);   // ← تغییر مهم: renderAll
+        
+        requestData();
+      });
+
+      socket.on("connect_error", (err) => {
+        document.getElementById("status").innerHTML = `خطا در اتصال: ${err.message}`;
+      });
+
+      socket.on("disconnect", () => {
+        document.getElementById("status").innerHTML = "قطع شد — تلاش برای اتصال مجدد...";
+      });
+    }
+
+    function connectOrChange() {
+      const market = document.getElementById("market").value.trim().toUpperCase();
+      if (!market || market === currentMarket) {
+        requestData();
+        return;
+      }
+
+      if (socket && currentMarket) {
+        socket.off(`bot.${currentMarket}`);
+      }
+
+      currentMarket = market;
+
+      if (!socket || !socket.connected) {
+        initializeConnection();
+      } else {
+        socket.on(`bot.${currentMarket}`, renderAll);
+        requestData();
+        document.getElementById("status").innerHTML += ` — تغییر به ${currentMarket}`;
+      }
+    }
+
+    function requestData() {
+      if (!socket || !socket.connected || !currentMarket) {
+        document.getElementById("status").innerHTML += " — هنوز متصل نیست";
+        return;
+      }
+
+      socket.emit("bot.event", { marketPair: currentMarket });
+      document.getElementById("status").innerHTML += " — درخواست ارسال شد";
+    }
+
+    // ────────────────────────────────────────────────
+    // توابع جدید (کاملاً اصلاح‌شده و بدون خطای نگارشی)
+    // ────────────────────────────────────────────────
+
+    function renderAll(payload) {
+      if (!payload || !payload.data) return;
+
+      const { buyers, sellers, done } = payload.data;
+
+      console.log(buyers);
+
+      renderTable('buyTable', buyers);
+      renderTable('sellTable', sellers);
+      renderDoneTable(done);
+
+      lastUpdateTime = new Date();
+      document.getElementById('lastUpdate').textContent =
+        `آخرین بروزرسانی: ${lastUpdateTime.toLocaleTimeString('fa-IR')}`;
+    }
+
+    function renderTable(tableId, orders) {
+      const tableElement = document.getElementById(tableId);
+      if (!tableElement) return;
+
+      const tbody = tableElement.querySelector('tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = orders.map(o => `
+        <tr>
+          <td>${Number(o.price).toLocaleString('fa-IR')}</td>
+          <td>${Number(o.amount).toLocaleString('fa-IR')}</td>
+          <td>${Number(o.filledAmount).toLocaleString('fa-IR')}</td>
+          <td>${Number(o.remainingAmount).toLocaleString('fa-IR')}</td>
+          <td>${Number(o.total).toLocaleString('fa-IR')}</td>
+          <td class="time">${new Date(o.timestamp).toLocaleTimeString('fa-IR')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function renderDoneTable(orders) {
+      const tableElement = document.getElementById('doneTable');
+      if (!tableElement) return;
+
+      const tbody = tableElement.querySelector('tbody');
+      if (!tbody) return;
+
+      tbody.innerHTML = orders.map(o => {
+        const isBuy = o.side === 1;
+        const direction = isBuy ? 'خرید' : 'فروش';
+        const className = isBuy ? 'done-buy' : 'done-sell';
+
+        return `
+          <tr>
+            <td class="${className}">${direction}</td>
+            <td>${Number(o.price).toLocaleString('fa-IR')}</td>
+            <td>${Number(o.amount).toLocaleString('fa-IR')}</td>
+            <td>${Number(o.total).toLocaleString('fa-IR')}</td>
+            <td class="time">${new Date(o.timestamp).toLocaleTimeString('fa-IR')}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // اتصال اولیه هنگام لود صفحه
+    window.addEventListener("load", () => {
+      document.getElementById("market").value = currentMarket;
+      initializeConnection();
+    });
+  </script>
+</body>
+</html>

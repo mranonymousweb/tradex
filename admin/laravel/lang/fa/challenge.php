@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => 'Title',
+    'initial_balance' => ' Initial Balance(USDT) ',
+    'challenge_duration' => ' Challenge Duration(Days) ',
+    'min_day' => ' Minimum Active Trading Days ',
+    'profit_target' => ' Profit Target(%) ',
+    'daily_drawdown' => ' Daily Drawdown(%) ',
+    'max_drawdown' => ' Max Drawdown(%) ',
+    'risk_reset_time' => ' Risk Reset Time(date time) ',
+    'max_open_trades' => ' Max Open Trades ',
+    'max_position_size' => ' Max Position Size(%) ',
+    'allowed_symbols' => ' Allowed Symbols ',
+    'leverage_from' => ' Leverage From ',
+    'leverage_to' => ' Leverage To ',
+    'leverage' => ' Leverage ',
+    'hold_overnight_positions' => ' Hold Overnight Positions ',
+    'weekend_trading_allowed' => ' Weekend Trading Allowed ',
+    'force_sl_tp_usage' => ' Force Sl/Tp Usage ',
+    'auto_disable_on_rule_breach' => ' Auto Disable On Rule Breach ',
+    'allow_copy_trading' => ' Allow Copy Trading ',
+    'allow_bots_ea' => ' Allow Bots Ea ',
+    'news_time_trading_block' => ' News Time Trading Block ',
+];

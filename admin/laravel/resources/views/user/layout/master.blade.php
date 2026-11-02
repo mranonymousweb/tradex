@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@yield('title')</title>
+    <meta name="description" content="قالب فرشگاهی آرینو، بهترین قالب برای فروشگاه‌های اینترنتی با طراحی مدرن و واکنش‌گرا.">
+    <meta name="keywords" content="قالب فروشگاهی, قالب آرینو, فروشگاه اینترنتی, طراحی واکنش‌گرا">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="آرینو">
+    <meta name="copyright" content="تمامی حقوق متعلق به آرینو است.">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{asset('assets/images/favicon_io/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{asset('assets/images/favicon_io/favicon-32x32.png')}}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{asset('assets/images/favicon_io/favicon-16x16.png')}}">
+    <link rel="canonical" href="https://example.com/your-page-url">
+    <link rel="stylesheet" href="{{asset('assets/css/app.css')}}">
+    <link rel="preload" href="{{asset('assets/fonts/payda/PeydaWebFaNum-Medium.woff2')}}" as="font" type="font/woff2" crossorigin>
+    @stack('styles')
+</head>
+<body class="bg-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-200">
+
+<div class="flex h-screen overflow-hidden max-w-[1920px] mx-auto">
+    <!-- sidebar -->
+    @include('user.partial.sidebar')
+    <!-- main content -->
+    <div class="flex flex-col flex-1 overflow-hidden">
+        <!-- header -->
+         @include('user.partial.header')
+        <!-- page content -->
+        @yield('contents')
+    </div>
+</div>
+<!-- /end page divider -->
+
+<!-- start canvas message -->
+
+<div id="offcanvas-user-message-left"
+     class="offcanvas invisible dark:bg-background-dark dark:text-white fixed top-0 left-0 sm:w-100 w-[80%] h-full bg-white shadow-lg transform -translate-x-full transition-transform opacity-0 z-50"
+     role="dialog"
+     aria-labelledby="cart-title"
+     aria-modal="true">
+    <!-- Header -->
+    <header class="border-b p-3 flex items-center justify-between border-gray-400">
+        <h2 id="cart-title" class="font-bold text-base">پیغام های شما</h2>
+        <button
+            onclick="closeOffcanvas()"
+            class="cursor-pointer"
+            aria-label="بستن "
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="size-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+            </svg>
+        </button>
+    </header>
+    <!-- message Items -->
+    <main class="relative space-y-4 divide-y divide-gray-200 p-3 overflow-y-scroll h-full">
+        <!-- message one -->
+        <div class="bg-white last:mb-20 border border-gray-400 rounded-2xl shadow-md dark:bg-card-dark dark:text-white overflow-hidden p-5 space-y-3">
+            <div class="flex items-start space-x-3 rtl:space-x-reverse">
+                <div class="flex flex-col space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img class="h-12 w-12 rounded-full" src="{{asset('assets/images/user/user.jpg')}}" alt="آواتار کاربر">
+                        <p class="text-sm  text-gray-900 dark:text-white">کاربر مهمان</p>
+                        <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-primary-grad text-white text-blue-800 ">جدید</span>
+                    </div>
+                    <p class="mt-1 dark:text-white ms-3 text-sm text-gray-600">
+                        سلام! این یک پیغام شبیه به توئیت است که می‌توانید برای چت یا نظرات استفاده کنید.
+                    </p>
+                    <div class="mt-2 flex items-center space-x-4 text-gray-500 text-sm">
+                        <div class="flex items-center">
+                            <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                            </svg>
+                            ۲ دقیقه پیش
+                        </div>
+                        <button class="text-primary hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 font-medium">پاسخ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- message two -->
+        <div class="bg-white last:mb-20 border border-gray-400 rounded-2xl shadow-md dark:bg-card-dark dark:text-white overflow-hidden p-5 space-y-3">
+            <div class="flex items-start space-x-3 rtl:space-x-reverse">
+                <div class="flex flex-col space-y-2">
+                    <div class="flex items-center space-x-2">
+                        <img class="h-12 w-12 rounded-full" src="{{asset('assets/images/user/user.jpg')}}" alt="آواتار کاربر">
+                        <p class="text-sm  text-gray-900 dark:text-white">کاربر مهمان</p>
+                        <span class="px-2 py-0.5 rounded-full text-xs font-medium bg-primary-grad text-white text-blue-800 ">جدید</span>
+                    </div>
+                    <p class="mt-1 dark:text-white ms-3 text-sm text-gray-600">
+                        سلام! این یک پیغام شبیه به توئیت است که می‌توانید برای چت یا نظرات استفاده کنید.
+                    </p>
+                    <div class="mt-2 flex items-center space-x-4 text-gray-500 text-sm">
+                        <div class="flex items-center">
+                            <svg class="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path>
+                            </svg>
+                            ۲ دقیقه پیش
+                        </div>
+                        <button class="text-primary hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-500 font-medium">پاسخ</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- /canvas message -->
+
+<!-- start canvas notification -->
+
+<div id="offcanvas-notification-left"
+     class="offcanvas invisible dark:bg-background-dark dark:text-white fixed top-0 left-0 sm:w-100 w-[80%] h-full bg-white shadow-lg transform -translate-x-full transition-transform opacity-0 z-50"
+     role="dialog"
+     aria-labelledby="cart-title"
+     aria-modal="true">
+    <!-- Header -->
+    <header class="border-b p-3 flex items-center justify-between border-gray-400">
+        <h2 class="font-bold text-base">اعلان های شما</h2>
+        <button
+            onclick="closeOffcanvas()"
+            class="cursor-pointer"
+            aria-label="بستن "
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                 stroke="currentColor" class="size-8">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+            </svg>
+        </button>
+    </header>
+    <!-- notification Items -->
+    <main class="relative space-y-4 divide-y divide-gray-200 p-3 overflow-y-scroll h-full">
+        <!-- گروه اعلان‌ها -->
+        <div class="space-y-3">
+            <!-- notification 1 -->
+            <div class="bg-white dark:bg-card-dark rounded-lg shadow-md overflow-hidden border border-gray-300">
+                <div class="p-3 flex items-start">
+                    <div class="flex-shrink-0 bg-blue-100 p-1 rounded-full">
+                        <svg class="h-5 w-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
+                        </svg>
+                    </div>
+                    <div class="mr-3 flex-1">
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">یادآوری قرارملاقات</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">جلسه امروز ساعت 14:30 در اتاق کنفرانس</p>
+                    </div>
+                    <button class="ml-2 text-gray-400 hover:text-gray-500">
+                        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- notification 2 -->
+            <div class="bg-white dark:bg-card-dark rounded-lg shadow-md overflow-hidden border border-gray-300">
+                <div class="p-3 flex items-start">
+                    <div class="flex-shrink-0 bg-green-100 p-1 rounded-full">
+                        <svg class="h-5 w-5 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                    </div>
+                    <div class="mr-3 flex-1">
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">پرداخت موفق</p>
+                        <p class="mt-1 text-sm text-gray-500 dark:text-gray-300">تراکنش شما با موفقیت انجام شد. کد رهگیری: 458712</p>
+                    </div>
+                    <button class="ml-2 text-gray-400 hover:text-gray-500">
+                        <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<!-- Overlay -->
+
+<!-- /canvas notification -->
+<!-- start canvas responsive menu -->
+@include('user.partial.responsive-menu')
+
+@stack('modals')
+<!-- Overlay -->
+<div class="overlay transition fixed inset-0 z-40 bg-black/70 hidden"
+     onclick="closeOffcanvas()"
+     role="presentation"
+     aria-hidden="true"
+></div>
+
+<!-- /canvas responsive menu -->
+<script src="{{asset('assets/js/dependencies/app.js')}}"></script>
+@stack('scripts')
+
+</body>
+</html>

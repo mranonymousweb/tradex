@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => 'Titre',
+    'initial_balance' => 'Solde initial (USDT)',
+    'challenge_duration' => 'Durée du défi (jours)',
+    'min_day' => 'Jours de négociation actifs minimum',
+    'profit_target' => 'Objectif de bénéfice (%)',
+    'daily_drawdown' => 'Tirage quotidien (%)',
+    'max_drawdown' => 'Tirage maximum (%)',
+    'risk_reset_time' => 'Heure de réinitialisation du risque (date heure)',
+    'max_open_trades' => 'Nombre maximum de transactions ouvertes',
+    'max_position_size' => 'Taille maximale de la position (%)',
+    'allowed_symbols' => 'Symboles autorisés',
+    'leverage_from' => 'Tirer parti de',
+    'leverage_to' => 'Tirer parti de',
+    'leverage' => 'Effet de levier',
+    'hold_overnight_positions' => 'Détenir des positions de nuit',
+    'weekend_trading_allowed' => 'Trading le week-end autorisé',
+    'force_sl_tp_usage' => 'Forcer l\'utilisation de Sl/Tp',
+    'auto_disable_on_rule_breach' => 'Désactivation automatique en cas de violation des règles',
+    'allow_copy_trading' => 'Autoriser le trading de copie',
+    'allow_bots_ea' => 'Autoriser les robots par groupe',
+    'news_time_trading_block' => 'Bloc d\'échange de temps d\'actualités',
+];

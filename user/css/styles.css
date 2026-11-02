@@ -1,0 +1,46 @@
+/* Tailwind Core */
+@import 'tailwindcss';
+
+/* ReUI Configs */
+@import './config.reui.css';
+@font-face {
+  font-family: 'Plex';
+  src: url('../app/models/fonts/plex/web-font/d05c19ccecf7003d248c60ffd6b5e8f7.eot');
+  src:
+    url('../app/models/fonts/plex/web-font/d05c19ccecf7003d248c60ffd6b5e8f7.eot?#iefix')
+      format('embedded-opentype'),
+    url('../app/models/fonts/plex/web-font/d05c19ccecf7003d248c60ffd6b5e8f7.woff2')
+      format('woff2'),
+    url('../app/models/fonts/plex/web-font/d05c19ccecf7003d248c60ffd6b5e8f7.woff')
+      format('woff'),
+    url('../app/models/fonts/plex/web-font/d05c19ccecf7003d248c60ffd6b5e8f7.ttf')
+      format('truetype'),
+    url('../app/models/fonts/plex/web-font/d05c19ccecf7003d248c60ffd6b5e8f7.svg')
+      format('svg');
+}
+
+/** Global Styles **/
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  *:focus-visible {
+    @apply outline-ring rounded-xs shadow-none outline-2 outline-offset-3 transition-none!;
+  }
+}
+
+/* Metronic Components  */
+@import './components/image-input.css';
+@import './components/apexcharts.css';
+@import './components/leaflet.css';
+@import './components/rating.css';
+@import './components/image-input.css';
+@import './components/scrollable.css';
+@import './components/demo.css';
+@import './components/market.css';
+@import './components/dots-loader.css';
+
+/** Dark/Light Theme Variant **/
+@custom-variant dark (&:is(.dark *));
+@custom-variant light (&:not(.dark *));

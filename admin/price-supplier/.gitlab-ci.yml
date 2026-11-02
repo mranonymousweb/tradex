@@ -1,0 +1,102 @@
+# Security pipeline — NestJS service
+# Copy this file to spot-bot-ir/ and spot-matching-ir/ as well; only WORKDIR changes.
+
+stages:
+  - blocking
+  - advisory
+
+variables:
+  WORKDIR: "price"   # spot-bot-ir → "bot"   |   spot-matching-ir → "matching"
+
+default:
+  image: node:22-alpine
+  before_script:
+    - cd "$WORKDIR"
+
+# ---------------------------------------------------------------------------
+# Known-vulnerable dependencies.
+# Baseline at the 2026 audit: 42 advisories per service (2 critical, 20 high).
+# `ws`, `engine.io` and `socket.io-parser` sit directly under the PUBLIC
+# gateway on port 3060 — those are the ones to clear first.
+# ---------------------------------------------------------------------------
+npm_audit_critical:
+  stage: blocking
+  script:
+    - npm audit --package-lock-only --audit-level=critical
+  # Flip to `false` once the two critical advisories are resolved.
+  allow_failure: true
+
+npm_audit_full:
+  stage: advisory
+  script:
+    - npm audit --package-lock-only --audit-level=high || true
+    - npm audit --package-lock-only --json > ../npm-audit.json || true
+  artifacts:
+    when: always
+    paths: ["npm-audit.json"]
+    expire_in: 30 days
+  allow_failure: true
+
+# ---------------------------------------------------------------------------
+# Secret scanning — repo-wide, including history.
+# ---------------------------------------------------------------------------
+secret_scan:
+  stage: blocking
+  image:
+    name: zricethezav/gitleaks:latest
+    entrypoint: [""]
+  before_script: []
+  script:
+    - gitleaks detect --source . --redact --verbose --exit-code 1
+
+# ---------------------------------------------------------------------------
+# Deployment hardening — the Kafka exposure found in the audit (V-36 / V-37).
+# ---------------------------------------------------------------------------
+compose_hardening:
+  stage: blocking
+  image: alpine:3.20
+  before_script: []
+  script:
+    - apk add --no-cache bash grep
+    - |
+      set -e
+      FAIL=0
+      for f in $(find . -name 'docker-compose*.yml'); do
+        # V-37 — the Docker socket must never be mounted into a service container
+        if grep -qE 'docker\.sock' "$f"; then
+          echo "✗ $f mounts /var/run/docker.sock (container escape → host root)"; FAIL=1
+        fi
+        # V-36 — published ports must bind to loopback, not 0.0.0.0
+        if grep -qE '^\s*-\s*"[0-9]+:[0-9]+"' "$f"; then
+          echo "✗ $f publishes a port on all interfaces; use \"127.0.0.1:PORT:PORT\""
+          grep -nE '^\s*-\s*"[0-9]+:[0-9]+"' "$f"; FAIL=1
+        fi
+        # V-36 — Kafka UI must not run without authentication
+        if grep -q 'kafka-ui' "$f" && ! grep -qE 'AUTH_TYPE|SPRING_SECURITY' "$f"; then
+          echo "✗ $f runs kafka-ui with no authentication"; FAIL=1
+        fi
+        # unpinned images drift silently
+        if grep -qE 'image:.*:latest' "$f"; then
+          echo "⚠ $f uses a :latest tag — pin the version"
+        fi
+      done
+      [ "$FAIL" -eq 0 ] && echo "✓ compose files hardened" || exit 1
+
+# ---------------------------------------------------------------------------
+# Static analysis
+# ---------------------------------------------------------------------------
+semgrep:
+  stage: advisory
+  image: returntocorp/semgrep:latest
+  before_script: []
+  script:
+    - semgrep --config=p/typescript --config=p/security-audit --config=p/secrets
+        --severity=ERROR --error --metrics=off .
+  allow_failure: true
+
+typecheck:
+  stage: advisory
+  script:
+    - npm ci --prefer-offline --no-audit
+    - npx tsc --noEmit
+  allow_failure: true

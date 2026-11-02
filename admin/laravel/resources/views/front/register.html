@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فرشگاهی آرینو</title>
+    <meta name="description"
+        content="قالب فرشگاهی آرینو، بهترین قالب برای فروشگاه‌های اینترنتی با طراحی مدرن و واکنش‌گرا.">
+    <meta name="keywords" content="قالب فروشگاهی, قالب آرینو, فروشگاه اینترنتی, طراحی واکنش‌گرا">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="آرینو">
+    <meta name="copyright" content="تمامی حقوق متعلق به آرینو است.">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon_io/favicon-16x16.png">
+    <link rel="canonical" href="https://example.com/your-page-url">
+    <link rel="stylesheet" href="assets/js/plugin/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="preload" href="assets/fonts/payda/PeydaWebFaNum-Medium.woff2" as="font" type="font/woff2" crossorigin>
+
+</head>
+
+<body
+    class="bg-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-200">
+
+    <div class="min-h-screen flex flex-col lg:flex-row">
+        <!-- Image section -->
+        <div class="lg:w-1/2 auth-bg relative hidden lg:flex items-center justify-center p-12">
+            <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
+            <div class="relative z-10 text-white text-center max-w-md">
+                <div class="w-20 h-20 rounded-xl bg-primary-grad flex items-center justify-center mx-auto mb-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </div>
+                <h2 class="text-3xl font-bold mb-4">به سایت ما خوش آمدید</h2>
+                <p class="text-lg mb-6">با ثبت نام در آرینو کالا از بهترین تجربه خرید آنلاین لذت ببرید. دسترسی به هزاران
+                    محصول با کیفیت و قیمت مناسب.</p>
+            </div>
+        </div>
+
+        <!-- Registration form section -->
+        <div class="lg:w-1/2 flex items-center justify-center p-6">
+            <div class="w-full max-w-md">
+                <!-- Mobile logo -->
+                <div class="flex items-center justify-center mb-8 lg:hidden">
+                    <div class="w-12 h-12 rounded-md bg-primary-grad flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                    </div>
+                    <h1 class="mr-3 text-xl font-bold text-dark dark:text-light">قالب <span class="text-primary">آرینو
+                        </span></h1>
+                </div>
+
+                <div
+                    class="bg-white dark:bg-card-dark rounded-2xl shadow-soft dark:shadow-soft-dark p-8 border border-gray-100 dark:border-gray-700">
+
+
+
+                    <div class="step active" id="step1">
+                        <div class="text-center mb-6">
+                            <h2 class="text-2xl font-bold text-dark dark:text-light mb-2">ثبت نام کاربر</h2>
+                            <p class="text-gray-500 dark:text-gray-400">لطفا اطلاعات شخصی خود را وارد کنید</p>
+                        </div>
+
+                        <form id="signup-form" novalidate class="space-y-5">
+                            <!-- First and Last Name -->
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label for="first-name"
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">نام</label>
+                                    <div class="relative">
+                                        <input type="text" id="first-name"
+                                            class="w-full pr-4 pl-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                            placeholder="نام خود را وارد کنید" required>
+                                        <div
+                                            class="absolute input-icon top-1/2 transform -translate-y-1/2 text-gray-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p class="error-message hidden " id="first-name-error">لطفانام خود را وارد کنید</p>
+
+                                </div>
+                                <div>
+                                    <label for="last-name"
+                                        class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">نام
+                                        خانوادگی</label>
+                                    <div class="relative">
+                                        <input type="text" id="last-name"
+                                            class="w-full pr-4 pl-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                                            placeholder="نام خانوادگی خود را وارد کنید" required>
+                                        <div
+                                            class="absolute input-icon top-1/2 transform -translate-y-1/2 text-gray-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
+                                                viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <p class="error-message hidden" id="last-name-error">لطفانام خانوادگی خود را وارد
+                                        کنید</p>
+                                </div>
+                            </div>
+                            <!-- Mobile -->
+                            <div>
+                                <label for="mobile"
+                                    class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                                    شماره موبایل
+                                </label>
+
+                                <div id="country-phone-container"
+                                    class=" dir-ltr w-full flex  overflow-hidden pr-4 pl-10 py-3 border rounded-xl focus-within:border-primary focus-within:ring-2 focus-within:ring-primary transition dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                    <div
+                                        class="flex items-center border-r w-1/3 pe-3 text-sm text-gray-700 dark:text-gray-200  dark:border-gray-600">
+                                        <select id="country" name="country"
+                                            class="w-full bg-white dark:bg-gray-700 dark:text-white dark:border-gray-600">
+                                            <option value="ir">🇮🇷 IRI</option>
+                                            <option value="af">🇦🇫 AFG</option>
+                                            <option value="tr">🇹🇷 TUR</option>
+                                            <option value="de">🇩🇪 GER</option>
+                                            <option value="us">🇺🇸 USA</option>
+                                        </select>
+                                    </div>
+
+
+                                    <div
+                                        class="flex items-center justify-center border-r w-1/3 px-3 text-sm text-gray-700 dark:text-gray-200  dark:border-gray-600">
+                                        <input type="text" id="country-code" placeholder="+98"
+                                            class="w-14 text-center focus:outline-none" />
+                                    </div>
+
+
+                                    <div
+                                        class="flex justify-center w-2/3 relative px-3 text-gray-700 dark:text-gray-200">
+                                        <input type="tel" id="mobile" placeholder="912xxxxxxx"
+                                            class="w-full bg-transparent focus:outline-none" />
+
+                                    </div>
+                                </div>
+
+                                <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                                    کد تایید به این شماره ارسال خواهد شد
+                                </p>
+                                <p class="error-message hidden" id="mobile-error">لطفا شماره موبایل معتبر وارد کنید</p>
+                            </div>
+
+                            <div class="pt-4">
+                                <button type="submit"
+                                    class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary dark:bg-primary-dark hover:bg-primary/90 dark:hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+                                    ثبت نام
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-4 ms-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                    </svg>
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <!-- Login link -->
+                    <div class="mt-6 text-center">
+                        <p class="text-sm text-gray-500 dark:text-gray-400">
+                            قبلاً حساب کاربری دارید؟
+                            <a href="login.html"
+                                class="font-medium text-primary dark:text-primary-dark hover:underline">وارد
+                                شوید</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/dependencies/app.js"></script>
+
+
+    <script>
+
+        const signUpForm = document.getElementById('signup-form');
+
+        const firstName = document.getElementById('first-name');
+        const lastName = document.getElementById('last-name');
+        const mobile = document.getElementById('mobile');
+        const countryPhoneContainer = document.getElementById('country-phone-container');
+
+        const firstNameError = document.getElementById('first-name-error');
+        const lastNameError = document.getElementById('last-name-error');
+        const mobileError = document.getElementById('mobile-error');
+
+        signUpForm.addEventListener('submit', function handleSubmit(event) {
+            event.preventDefault();
+
+            if (!firstName.value.trim()) {
+                firstName.classList.add('input-error');
+                firstNameError.classList.remove('hidden');
+                return;
+            }
+
+            if (firstName.value.trim().length < 3) {
+                firstName.classList.add('input-error');
+                firstNameError.innerText = "نام نمی تواند کمتر از ۳ کاراکتر باشد";
+                firstNameError.classList.remove('hidden');
+                return;
+            }
+
+            if (!lastName.value.trim()) {
+                lastName.classList.add('input-error');
+                lastNameError.classList.remove('hidden');
+                return;
+            }
+
+            if (lastName.value.trim().length < 3) {
+                lastName.classList.add('input-error');
+                lastNameError.innerText = "نام خانوادگی نمی تواند کمتر از ۳ کاراکتر باشد";
+                lastNameError.classList.remove('hidden');
+                return;
+            }
+
+            if (!mobile.value.trim()) {
+                countryPhoneContainer.classList.add('input-error');
+                mobileError.classList.remove('hidden');
+                return;
+            }
+
+
+            window.location.href = 'verify.html';
+        });
+
+        firstName.addEventListener('input', () => {
+            const value = firstName.value.trim();
+            if (value.length >= 3) {
+                firstName.classList.remove('input-error');
+                firstNameError.classList.add('hidden');
+            }
+        });
+
+        lastName.addEventListener('input', () => {
+            const value = lastName.value.trim();
+            if (value.length >= 3) {
+                lastName.classList.remove('input-error');
+                lastNameError.classList.add('hidden');
+            }
+        });
+
+        mobile.addEventListener('input', () => {
+            const value = mobile.value.trim();
+            countryPhoneContainer.classList.remove('input-error');
+            mobileError.classList.add('hidden');
+
+        });
+    </script>
+
+    <script>
+        const countrySelect = document.getElementById("country");
+        const countryCodeInput = document.getElementById("country-code");
+
+        const countryCodes = {
+            ir: "+98",
+            af: "+93",
+            tr: "+90",
+            de: "+49",
+            us: "+1"
+        };
+
+        countrySelect.addEventListener("change", function () {
+            const selectedValue = this.value;
+            const code = countryCodes[selectedValue] || "";
+            countryCodeInput.value = code;
+        });
+
+
+        window.addEventListener("DOMContentLoaded", () => {
+            const initCode = countryCodes[countrySelect.value] || "";
+            countryCodeInput.value = initCode;
+        });
+    </script>
+
+
+</body>
+
+</html>

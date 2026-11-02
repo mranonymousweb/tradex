@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => 'عنوان',
+    'initial_balance' => 'الرصيد الأولي (USDT)',
+    'challenge_duration' => 'مدة التحدي (أيام)',
+    'min_day' => 'الحد الأدنى لأيام التداول النشطة',
+    'profit_target' => 'هدف الربح(%)',
+    'daily_drawdown' => 'السحب اليومي(%)',
+    'max_drawdown' => 'الحد الأقصى للسحب (٪)',
+    'risk_reset_time' => 'وقت إعادة ضبط المخاطر (التاريخ والوقت)',
+    'max_open_trades' => 'ماكس الصفقات المفتوحة',
+    'max_position_size' => 'الحد الأقصى لحجم المركز(%)',
+    'allowed_symbols' => 'الرموز المسموح بها',
+    'leverage_from' => 'الرافعة المالية من',
+    'leverage_to' => 'النفوذ ل',
+    'leverage' => 'تَأثِير',
+    'hold_overnight_positions' => 'شغل مناصب بين عشية وضحاها',
+    'weekend_trading_allowed' => 'التداول في عطلة نهاية الأسبوع مسموح به',
+    'force_sl_tp_usage' => 'قوة استخدام Sl/Tp',
+    'auto_disable_on_rule_breach' => 'التعطيل التلقائي عند خرق القواعد',
+    'allow_copy_trading' => 'السماح بنسخ التداول',
+    'allow_bots_ea' => 'السماح للروبوتات إي',
+    'news_time_trading_block' => 'أخبار وقت التداول كتلة',
+];

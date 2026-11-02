@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => 'Başlık',
+    'initial_balance' => ' Başlangıç Bakiyesi(USDT) ',
+    'challenge_duration' => ' Mücadele Süresi(Gün) ',
+    'min_day' => ' Minimum Aktif İşlem Günleri ',
+    'profit_target' => ' Kâr Hedefi(%) ',
+    'daily_drawdown' => ' Günlük Düşüş(%) ',
+    'max_drawdown' => ' Maksimum Düşüş(%) ',
+    'risk_reset_time' => ' Risk Sıfırlama Süresi(tarih saat) ',
+    'max_open_trades' => ' Maksimum Açık İşlemler ',
+    'max_position_size' => ' Maksimum Pozisyon Boyutu(%) ',
+    'allowed_symbols' => ' İzin Verilen Semboller ',
+    'leverage_from' => ' Kaldıraçtan ',
+    'leverage_to' => ' Kaldıraçtan ',
+    'leverage' => ' Kaldıraç ',
+    'hold_overnight_positions' => ' Gecelik Pozisyonları Tutma ',
+    'weekend_trading_allowed' => ' Hafta Sonu Ticaretine İzin Verildi ',
+    'force_sl_tp_usage' => ' Sl/Tp Kullanımını Zorla ',
+    'auto_disable_on_rule_breach' => ' Kural İhlalinde Otomatik Devre Dışı Bırak ',
+    'allow_copy_trading' => ' Kopya Ticaretine İzin Ver ',
+    'allow_bots_ea' => ' Botlara Ea İzin Ver ',
+    'news_time_trading_block' => ' Haber Zamanı Ticaret Bloğu',
+];

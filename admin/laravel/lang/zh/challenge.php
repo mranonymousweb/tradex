@@ -1,0 +1,25 @@
+<?php
+
+return [
+    'title' => '标题',
+    'initial_balance' => ' 初始余额(USDT) ',
+    'challenge_duration' => ' 挑战持续时间(天) ',
+    'min_day' => ' 最小活跃交易天数 ',
+    'profit_target' => ' 利润目标(%) ',
+    'daily_drawdown' => ' 每日回撤(%) ',
+    'max_drawdown' => ' 最大回撤(%) ',
+    'risk_reset_time' => ' 风险重置时间(日期时间) ',
+    'max_open_trades' => ' 最大未平仓交易 ',
+    'max_position_size' => ' 最大头寸规模(%) ',
+    'allowed_symbols' => ' 允许交易品种 ',
+    'leverage_from' => '杠杆从 ',
+    'leverage_to' => ' 杠杆到 ',
+    'leverage' => ' 杠杆 ',
+    'hold_overnight_positions' => ' 持有隔夜头寸 ',
+    'weekend_trading_allowed' => ' 允许周末交易 ',
+    'force_sl_tp_usage' => ' 强制 Sl/Tp 使用 ',
+    'auto_disable_on_rule_breach' => ' 自动违反规则时禁用 ',
+    'allow_copy_trading' => ' 允许跟单交易 ',
+    'allow_bots_ea' => ' 允许机器人 Ea ',
+    'news_time_trading_block' => ' 新闻时间交易区块',
+];

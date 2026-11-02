@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>قالب فرشگاهی آرینو</title>
+    <meta name="description" content="قالب فرشگاهی آرینو، بهترین قالب برای فروشگاه‌های اینترنتی با طراحی مدرن و واکنش‌گرا.">
+    <meta name="keywords" content="قالب فروشگاهی, قالب آرینو, فروشگاه اینترنتی, طراحی واکنش‌گرا">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="آرینو">
+    <meta name="copyright" content="تمامی حقوق متعلق به آرینو است.">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon_io/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon_io/favicon-16x16.png">
+    <link rel="canonical" href="https://example.com/your-page-url">
+    <link rel="stylesheet" href="assets/js/plugin/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="assets/css/app.css">
+    <link rel="preload" href="assets/fonts/payda/PeydaWebFaNum-Medium.woff2" as="font" type="font/woff2" crossorigin>
+
+</head>
+<body class="bg-light dark:bg-background-dark text-text-primary-light dark:text-text-primary-dark transition-colors duration-200">
+
+<div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- Image section -->
+    <div class="lg:w-1/2 auth-bg relative hidden lg:flex items-center justify-center p-12">
+        <div class="absolute inset-0 bg-black/30 dark:bg-black/50"></div>
+        <div class="relative z-10 text-white text-center max-w-md">
+            <div class="w-20 h-20 rounded-xl bg-primary-grad flex items-center justify-center mx-auto mb-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+            </div>
+            <h2 class="text-3xl font-bold mb-4">به سایت ما خوش آمدید</h2>
+            <p class="text-lg mb-6">با ثبت نام در آرینو کالا از بهترین تجربه خرید آنلاین لذت ببرید. دسترسی به هزاران محصول با کیفیت و قیمت مناسب.</p>
+        </div>
+    </div>
+
+    <!-- Login form section -->
+    <div class="lg:w-1/2 flex items-center justify-center p-6">
+        <div class="w-full max-w-md">
+            <!-- Mobile logo -->
+            <div class="flex items-center justify-center mb-8 lg:hidden">
+                <div class="w-12 h-12 rounded-md bg-primary-grad flex items-center justify-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                    </svg>
+                </div>
+                <h1 class="mr-3 text-xl font-bold text-dark dark:text-light">قالب<span class="text-primary"> آرینو </span></h1>
+            </div>
+
+            <div class="bg-white dark:bg-card-dark rounded-2xl shadow-soft dark:shadow-soft-dark p-8 border border-gray-100 dark:border-gray-700 fade-in">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl font-bold text-dark dark:text-light mb-2">ورود به حساب کاربری</h2>
+                    <form novalidate class="space-y-5 " id="login-form">
+                        <!-- Mobile number -->
+                        <div class="text-right">
+                            <label for="mobile" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">شماره موبایل</label>
+                            <div class="relative">
+                                <input type="tel" id="mobile" class="w-full pl-12 pr-4 py-3 border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-white" placeholder="09xxxxxxxxx" required>
+                                <div class="absolute input-icon top-1/2 transform -translate-y-1/2 text-gray-400">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <p class="error-message hidden" id="mobile-error">لطفا شماره موبایل معتبر وارد کنید</p>
+                            <div class="pt-4">
+                                <button type="submit"
+                                    class="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-xl shadow-sm text-sm font-medium text-white bg-primary dark:bg-primary-dark hover:bg-primary/90 dark:hover:bg-primary/80 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors">
+                                     ورود
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-4 ms-2">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15.75 19.5 8.25 12l7.5-7.5" />
+                                    </svg>
+                                </button>
+                            </div>
+                          
+                        </div>
+                    </form>
+                
+                </div> 
+             
+
+                <!-- Registration link -->
+                <div class="mt-6 text-center">
+                    <p class="text-sm text-gray-500 dark:text-gray-400">
+                        حساب کاربری ندارید؟
+                        <a href="register.html" class="font-medium text-primary dark:text-primary-dark hover:underline">ثبت نام کنید</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/js/dependencies/app.js"></script>
+
+<script>
+
+    const loginForm = document.getElementById('login-form');
+    const mobile = document.getElementById('mobile');
+    const mobileError = document.getElementById('mobile-error');
+
+    loginForm.addEventListener('submit', function handleSubmit(event) {
+        event.preventDefault();
+        
+        if (!mobile.value) {
+                mobile.classList.add('input-error');
+                mobileError.classList.remove('hidden');
+                return;
+             
+            }
+
+        window.location.href = 'verify.html';
+    });
+
+    mobile.addEventListener('input', () => {
+            mobile.classList.remove('input-error');
+            mobileError.classList.add('hidden');
+
+        });
+</script>
+
+</body>
+</html>
