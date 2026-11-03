@@ -12,6 +12,7 @@ const fa = {
     security: 'امنیت',
     signin: 'ورود',
     signup: 'ثبت‌نام',
+    panel: 'ورود به پنل',
     menu: 'منو',
   },
   hero: {
@@ -113,6 +114,7 @@ const en: typeof fa = {
     security: 'Security',
     signin: 'Sign in',
     signup: 'Sign up',
+    panel: 'Open panel',
     menu: 'Menu',
   },
   hero: {

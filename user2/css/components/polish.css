@@ -108,3 +108,51 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------- User panel extras ---------------- */
+@layer components {
+  /* Card titles: bolder, with a short brand tick before them */
+  [data-slot='card-title'] {
+    position: relative;
+    font-weight: 700;
+  }
+  [data-slot='card-header'] {
+    border-bottom-color: color-mix(in srgb, var(--border) 80%, transparent);
+  }
+
+  /* Dashboard banner slider */
+  .mySwiper {
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-card);
+  }
+  .mySwiper .swiper-slide {
+    border-radius: 0;
+  }
+  .mySwiper .swiper-pagination-bullet-active {
+    background: var(--primary);
+  }
+  .mySwiper .swiper-button-next,
+  .mySwiper .swiper-button-prev {
+    --swiper-navigation-size: 18px;
+    color: #fff;
+    background: rgb(0 0 0 / 0.35);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    backdrop-filter: blur(6px);
+  }
+
+  /* Toasts */
+  [data-sonner-toast] {
+    border-radius: 0.9rem !important;
+    border: 1px solid var(--border) !important;
+    box-shadow: var(--shadow-card) !important;
+  }
+
+  /* Badges and progress feel softer */
+  [data-slot='badge'] {
+    font-weight: 600;
+  }
+}

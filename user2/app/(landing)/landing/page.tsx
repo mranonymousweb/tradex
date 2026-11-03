@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { getLocale } from 'next-intl/server';
 import { metaData } from '@/services/metaData.services';
 import { rtlLocales } from '@/utils/rtlLocales';
@@ -30,6 +31,7 @@ export default async function LandingPage() {
   const t = copy[lang];
   const rtl = rtlLocales.includes(locale);
 
+  const loggedIn = Boolean((await cookies()).get('user_session')?.value);
   const data = await metaData();
   const brand = brandFrom(data?.meta?.meta_data_title);
   const logo: string | undefined = data?.meta?.meta_data_dark_logo || undefined;
@@ -48,6 +50,8 @@ export default async function LandingPage() {
         signin={t.nav.signin}
         signup={t.nav.signup}
         menuLabel={t.nav.menu}
+        panel={t.nav.panel}
+        loggedIn={loggedIn}
         links={[
           { href: '#markets', label: t.nav.markets },
           { href: '#features', label: t.nav.features },
@@ -73,8 +77,8 @@ export default async function LandingPage() {
               </h1>
               <p className="lp-lead mt-6 max-w-[46ch]">{t.hero.sub}</p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="/signup" className="lp-btn">
-                  {t.hero.primary}
+                <Link href={loggedIn ? '/' : '/signup'} className="lp-btn">
+                  {loggedIn ? t.nav.panel : t.hero.primary}
                 </Link>
                 <Link href="/markets" className="lp-btn lp-btn-ghost">
                   {t.hero.secondary}

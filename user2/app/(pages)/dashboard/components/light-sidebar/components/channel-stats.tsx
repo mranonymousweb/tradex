@@ -4,7 +4,6 @@ import { Fragment } from 'react';
 import { decimalPipe, handleDecimal } from '@/helper/decimalPipe';
 import { dashboardCurrencies } from '@/helper/markets/markets';
 import { MarketCurrency } from '@/types/market-currency';
-import { toAbsoluteUrl } from '@/lib/helpers';
 import { Card, CardContent } from '@/components/ui/card';
 import { RenderItemPulse } from './render-pulse';
 
@@ -15,33 +14,38 @@ const ChannelStats = () => {
   if (isPending) return RenderItemPulse();
 
   const renderItem = (item: MarketCurrency, index: number) => {
-    const isPercent = Math.sign(item.changePercent);
+    const sign = Math.sign(item.changePercent);
+    const isDown = sign === -1;
 
     return (
-      <Card key={index}>
-        <CardContent className="p-5 flex flex-col justify-between gap-6 h-full bg-cover rtl:bg-[left_top_-1.7rem] bg-[right_top_-1.7rem] bg-no-repeat channel-stats-bg">
+      <Card key={index} className="group relative overflow-hidden">
+        <span
+          aria-hidden
+          className={`pointer-events-none absolute -top-10 -end-10 size-28 rounded-full blur-2xl opacity-30 transition-opacity group-hover:opacity-60 ${isDown ? 'bg-destructive' : 'bg-green'}`}
+        />
+        <CardContent className="relative p-5 flex flex-col justify-between gap-6 h-full">
           <div className="flex justify-between items-center">
-            <div className="flex gap-1 items-center">
+            <div className="flex gap-2 items-center">
               <img
                 src={item.icon ?? '/media/images/currency-icon.webp'}
-                className="w-7 rounded-full"
-                alt="image"
+                className="size-8 rounded-full ring-2 ring-border"
+                alt={item.symbol}
               />
-              <div className="flex items-center text-sm font-semibold pt-1.5">
+              <div className="flex items-center text-sm font-semibold">
                 <span>{item.symbol}</span>
                 <span className="text-muted-foreground">/USDT</span>
               </div>
             </div>
           </div>
-          <div className="flex gap-x-2 items-center">
-            <span className="text-lg font-semibold text-mono min-w-20">
+          <div className="flex flex-wrap gap-x-2 gap-y-1 items-center justify-between">
+            <span className="tabular text-lg font-bold text-mono">
               {handleDecimal(item.last)}
             </span>
             <span
               dir="ltr"
-              className={`${isPercent === -1 ? 'text-destructive' : 'text-green'}`}
+              className={`tabular rounded-md px-1.5 py-0.5 text-xs font-semibold ${isDown ? 'bg-destructive/10 text-destructive' : 'bg-green/10 text-green'}`}
             >
-              {isPercent === 1 && '+'}
+              {sign === 1 && '+'}
               {decimalPipe(item.changePercent, 2)}
             </span>
           </div>
@@ -52,16 +56,6 @@ const ChannelStats = () => {
 
   return (
     <Fragment>
-      <style>
-        {`
-          .channel-stats-bg {
-            background-image: url('${toAbsoluteUrl('/media/images/2600x1600/bg-3.png')}');
-          }
-          .dark .channel-stats-bg {
-            background-image: none
-          }
-        `}
-      </style>
       {currencies?.map((item: any, index: number) => renderItem(item, index))}
     </Fragment>
   );

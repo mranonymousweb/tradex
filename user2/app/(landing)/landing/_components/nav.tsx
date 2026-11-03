@@ -12,9 +12,11 @@ type Props = {
   signin: string;
   signup: string;
   menuLabel: string;
+  loggedIn?: boolean;
+  panel: string;
 };
 
-export function LandingNav({ brand, logo, links, signin, signup, menuLabel }: Props) {
+export function LandingNav({ brand, logo, links, signin, signup, menuLabel, loggedIn, panel }: Props) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -60,15 +62,23 @@ export function LandingNav({ brand, logo, links, signin, signup, menuLabel }: Pr
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/signin"
-            className="hidden h-9 items-center rounded-lg px-4 text-sm font-medium text-foreground transition-colors hover:bg-accent sm:inline-flex"
-          >
-            {signin}
-          </Link>
-          <Link href="/signup" className="lp-btn lp-btn-sm">
-            {signup}
-          </Link>
+          {loggedIn ? (
+            <Link href="/" className="lp-btn lp-btn-sm">
+              {panel}
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/signin"
+                className="hidden h-9 items-center rounded-lg px-4 text-sm font-medium text-foreground transition-colors hover:bg-accent sm:inline-flex"
+              >
+                {signin}
+              </Link>
+              <Link href="/signup" className="lp-btn lp-btn-sm">
+                {signup}
+              </Link>
+            </>
+          )}
           <button
             type="button"
             className="inline-flex size-9 items-center justify-center rounded-lg border border-border md:hidden"
@@ -94,9 +104,11 @@ export function LandingNav({ brand, logo, links, signin, signup, menuLabel }: Pr
                 {l.label}
               </a>
             ))}
-            <Link href="/signin" className="rounded-lg px-2 py-3 text-sm font-medium">
-              {signin}
-            </Link>
+            {!loggedIn && (
+              <Link href="/signin" className="rounded-lg px-2 py-3 text-sm font-medium">
+                {signin}
+              </Link>
+            )}
           </nav>
         </div>
       )}
