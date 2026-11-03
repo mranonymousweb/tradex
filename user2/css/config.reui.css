@@ -1,0 +1,195 @@
+@plugin 'tailwindcss-animate';
+
+/** Colors **/
+:root {
+  /** Base Colors — light: cool paper white, ink text **/
+  --background: #f5f7fb;
+  --foreground: #0f1729;
+  --card: #ffffff;
+  --card-foreground: #0f1729;
+  --popover: #ffffff;
+  --popover-foreground: #0f1729;
+  --primary: #1379f0;
+  --primary-foreground: #ffffff;
+  --secondary: #edf1f8;
+  --secondary-foreground: #3b4a66;
+  --muted: #edf1f8;
+  --muted-foreground: #6b7a96;
+  --accent: #e8eef9;
+  --accent-foreground: #0f1729;
+  --destructive: #ee4458;
+  --destructive-foreground: #ffffff;
+  --mono: #0f1729;
+  --mono-foreground: #ffffff;
+  --success: oklch(87.1% 0.15 154.449);
+  --green: #1fb37a;
+
+  /** Base Styles **/
+  --border: #e3e9f3;
+  --input: #ffffff;
+  --ring: #9ec5f8;
+  --radius: 0.625rem;
+
+  /** Brand extras **/
+  --brand-from: #1379f0;
+  --brand-to: #19b5f2;
+  --brand-gradient: linear-gradient(135deg, var(--brand-from), var(--brand-to));
+  --up: #1fb37a;
+  --down: #ee4458;
+  --surface-2: #f0f4fb;
+  --glow: 19 121 240;
+  --shadow-card: 0 1px 2px rgb(15 23 41 / 0.04), 0 8px 24px -12px rgb(15 23 41 / 0.12);
+}
+
+.dark {
+  /** Base Colors — dark: deep blue ink instead of flat grey **/
+  --background: #070b14;
+  --foreground: #eaf0fb;
+  --card: #0d1424;
+  --card-foreground: #eaf0fb;
+  --popover: #0f1729;
+  --popover-foreground: #eaf0fb;
+  --primary: #1b82f5;
+  --primary-foreground: #ffffff;
+  --secondary: #16203a;
+  --secondary-foreground: #a9b6d0;
+  --muted: #111a2e;
+  --muted-foreground: #7f8fae;
+  --accent: #15203a;
+  --accent-foreground: #eaf0fb;
+  --destructive: #f6465d;
+  --destructive-foreground: #ffffff;
+  --mono: #dbe5f7;
+  --mono-foreground: #070b14;
+  --success: oklch(87.1% 0.15 154.449);
+  --green: #2ebd85;
+
+  /** Base Styles **/
+  --border: #1b2540;
+  --input: #0a1120;
+  --ring: #2a4a86;
+
+  /** Brand extras **/
+  --brand-from: #1b82f5;
+  --brand-to: #22c3f5;
+  --up: #2ebd85;
+  --down: #f6465d;
+  --surface-2: #0a1120;
+  --glow: 27 130 245;
+  --shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset, 0 12px 32px -16px rgb(0 0 0 / 0.7);
+}
+
+/** Theme Setup **/
+@theme inline {
+  /** Base Colors **/
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-mono: var(--mono);
+  --color-mono-foreground: var(--mono-foreground);
+
+  --color-success: var(--success);
+  --color-green: var(--green);
+  --color-up: var(--up);
+  --color-down: var(--down);
+  --color-surface-2: var(--surface-2);
+
+  /** Base Styles **/
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-collapsible-down: collapsible-down 0.2s ease-out;
+  --animate-collapsible-up: collapsible-up 0.2s ease-out;
+  --animate-caret-blink: caret-blink 1.25s ease-out infinite;
+
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes collapsible-down {
+    from {
+      height: 0;
+    }
+
+    to {
+      height: var(--radix-collapsible-content-height);
+    }
+  }
+
+  @keyframes collapsible-up {
+    from {
+      height: var(--radix-collapsible-content-height);
+    }
+
+    to {
+      height: 0;
+    }
+  }
+
+  @keyframes caret-blink {
+    0%,
+    70%,
+    100% {
+      opacity: 1;
+    }
+
+    20%,
+    50% {
+      opacity: 0;
+    }
+  }
+}
+
+/** Custom Font Size **/
+@theme {
+  --text-2sm: 0.8125rem;
+  --text-2sm--line-height: calc(1.075 / 0.8125);
+
+  --text-2xs: 0.6875rem;
+  --text-2xs--line-height: calc(0.825 / 0.6875);
+}

@@ -37,7 +37,7 @@ export default async function Page() {
                                 <span>{t('alert.contact')} :</span>
                                 <a
                                     href="tel:+989154743239"
-                                    target="_blank"
+                                target="_blank"
                                     className="underline underline-offset-2"
                                 >
                                     09154743239

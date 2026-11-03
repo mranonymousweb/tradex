@@ -1,0 +1,178 @@
+.progress_sell {
+  position: relative;
+  z-index: 1;
+}
+
+.progress_sell::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: var(--progress);
+  top: 0;
+  height: 24px;
+  z-index: -1;
+}
+
+.progress_sell::after {
+  background: color-mix(in srgb, var(--down) 14%, transparent);
+}
+
+.dark .progress_sell::after {
+  background: color-mix(in srgb, var(--down) 22%, transparent);
+}
+
+.progress_buy {
+  position: relative;
+  z-index: 1;
+}
+
+.progress_buy::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  width: var(--progress);
+  top: 0;
+  height: 24px;
+  z-index: -1;
+}
+
+.progress_buy::after {
+  background: color-mix(in srgb, var(--up) 14%, transparent);
+}
+
+.dark .progress_buy::after {
+  background: color-mix(in srgb, var(--up) 20%, transparent);
+}
+
+.active_tab {
+  position: relative;
+  color: var(--foreground);
+}
+
+.active_tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  background: var(--primary);
+  border-radius: 3px;
+  height: 3px;
+  width: 13px;
+}
+
+/*Slider*/
+.silder-range-input {
+  position: relative;
+}
+
+.silder-range-input input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.silder-range-input input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  /*margin-top: -8px;*/
+  background-color: var(--color-mono);
+  height: 10px;
+  width: 10px;
+  transform: rotate(45deg);
+  border: 1px solid var(--color-mono);
+}
+
+.silder-range-input input[type='range']::-moz-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--color-mono);
+  height: 10px;
+  width: 10px;
+  transform: rotate(45deg);
+  border: 1px solid var(--color-mono);
+}
+
+.silder-range-input ul::after {
+  content: '';
+  position: absolute;
+  width: var(--width);
+  height: 1px;
+  background: var(--color-mono);
+}
+
+.silder-range-input .tooltip-slider::after {
+  content: '';
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid var(--color-mono);
+  border-radius: 4px;
+  bottom: -5px;
+}
+
+.silder-range-input .tooltip-slider {
+  display: none;
+}
+
+.silder-range-input:hover .tooltip-slider {
+  display: flex;
+}
+
+html[dir='rtl'] .tooltip-slider {
+  left: var(--rangeTooltip);
+}
+
+html[dir='ltr'] .tooltip-slider {
+  right: var(--rangeTooltip);
+}
+
+/*Tabs*/
+.tab-drop--list {
+  display: none;
+}
+
+.tab-drop:hover .tab-drop--list {
+  display: block;
+}
+
+.tab-drop:hover .tab-drop--selected svg {
+  transform: rotate(180deg);
+  transition: all 0.5s;
+}
+
+.tab-drop:hover .tab-drop--selected span {
+  color: var(--color-mono);
+}
+
+.level-range li {
+  margin-left: 9px;
+}
+
+@media screen and (max-width: 767px) {
+  .form-actions {
+    position: fixed;
+    bottom: -100%;
+    transform: translate3d(0, 100vh, 0);
+    transition: all 0.5s;
+    width: 100%;
+    z-index: 20;
+  }
+
+  .form-actions.show {
+    bottom: 0;
+    transform: translate3d(0, 190px, 0);
+  }
+
+  .overlay-market {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: black;
+    opacity: 40%;
+    z-index: 18;
+    inset: 0;
+  }
+}

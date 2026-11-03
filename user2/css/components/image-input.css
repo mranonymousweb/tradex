@@ -1,0 +1,83 @@
+@layer components {
+  .kt-image-input {
+    @apply relative inline-flex size-20 cursor-pointer items-center justify-center;
+
+    input[type='file'] {
+      @apply absolute size-0 appearance-none opacity-0;
+    }
+  }
+
+  .kt-image-input-remove {
+    @apply bg-background border-border absolute end-0.25 top-0.25 z-[1] flex size-5 cursor-pointer items-center justify-center rounded-full border shadow-sm;
+
+    i {
+      @apply text-foreground text-[11px];
+    }
+
+    svg {
+      @apply text-foreground size-3.25;
+    }
+
+    &:hover {
+      i {
+        @apply text-foreground;
+      }
+
+      svg {
+        @apply text-foreground;
+      }
+    }
+  }
+
+  .react-tel-input .flag-dropdown {
+    background: var(--color-background) !important;
+  }
+  .react-tel-input .selected-flag:hover,
+  .react-tel-input .selected-flag:focus {
+    background: var(--color-secondary) !important;
+  }
+  .react-tel-input .country-list .country:hover,
+  .react-tel-input .country-list .country.highlight {
+    background: var(--color-secondary) !important;
+  }
+  .react-tel-input .form-control {
+    border: 1px solid var(--color-border) !important;
+  }
+  .react-tel-input .flag-dropdown {
+    border: 1px solid var(--color-border) !important;
+  }
+  .react-tel-input .country-list {
+    background: var(--color-background) !important;
+  }
+  .react-tel-input .flag-dropdown.open .selected-flag {
+    background: var(--color-background) !important;
+  }
+
+  .kt-image-input-placeholder {
+    @apply border-border kt-image-input-empty:border-border relative size-full overflow-hidden rounded-full border bg-cover bg-no-repeat;
+  }
+
+  .kt-image-input-preview {
+    @apply relative size-full overflow-hidden rounded-full bg-cover bg-no-repeat;
+  }
+}
+.react-tel-input .form-control {
+  @apply !w-full md:!w-[285px] ltr:!pr-2 rtl:!pl-2;
+}
+.react-tel-input .selected-flag {
+  @apply !p-0 ltr:!pl-2 rtl:!pr-2;
+}
+.react-tel-input .selected-flag .arrow {
+  @apply ltr:!left-5 rtl:!right-5;
+}
+@custom-variant kt-image-input-empty {
+  [data-kt-image-input-initialized].empty & {
+    @slot;
+  }
+}
+
+@custom-variant image-input-changed {
+  [data-kt-image-input-initialized].changed & {
+    @slot;
+  }
+}

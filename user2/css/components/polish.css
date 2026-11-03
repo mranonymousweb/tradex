@@ -1,0 +1,110 @@
+/* ------------------------------------------------------------------
+   Global polish — deep-ink surfaces, soft ambient glow, calmer details.
+   Kept in the base/components layers so any Tailwind utility on a
+   component still wins over these defaults.
+------------------------------------------------------------------- */
+@layer base {
+  html {
+    color-scheme: light;
+  }
+  .dark,
+  html.dark {
+    color-scheme: dark;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: color-mix(in srgb, var(--muted-foreground) 35%, transparent)
+      transparent;
+  }
+
+  body {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Ambient brand glow behind the whole app (not a flex item: fixed) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+      radial-gradient(60rem 28rem at 88% -8%, rgb(var(--glow) / 0.1), transparent 62%),
+      radial-gradient(42rem 22rem at 0% 0%, rgb(var(--glow) / 0.05), transparent 62%);
+  }
+}
+
+@layer components {
+  /* Numbers line up in every table / price column */
+  td,
+  th,
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Tables: quieter header, soft row hover */
+  thead th {
+    color: var(--muted-foreground);
+    font-weight: 500;
+    background: color-mix(in srgb, var(--muted) 55%, transparent);
+  }
+  tbody tr {
+    transition: background-color 0.15s ease;
+  }
+  tbody tr:hover {
+    background: color-mix(in srgb, var(--accent) 55%, transparent);
+  }
+
+  /* Sidebar: thin selected indicator on the leading edge */
+  .sidebar [data-slot='accordion-menu-item'][data-selected='true'],
+  .sidebar [data-slot='accordion-menu-sub-trigger'][data-selected='true'] {
+    position: relative;
+  }
+  .sidebar [data-slot='accordion-menu-item'][data-selected='true']::before,
+  .sidebar [data-slot='accordion-menu-sub-trigger'][data-selected='true']::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: -6px;
+    top: 22%;
+    bottom: 22%;
+    width: 3px;
+    border-radius: 3px;
+    background: var(--brand-gradient);
+  }
+
+  /* Shared helpers used by the landing page and available app-wide */
+  .glass {
+    background: color-mix(in srgb, var(--card) 72%, transparent);
+    border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+    backdrop-filter: blur(14px);
+  }
+  .text-gradient-brand {
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .up {
+    color: var(--up);
+  }
+  .down {
+    color: var(--down);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
